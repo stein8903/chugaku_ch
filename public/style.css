@@ -1,0 +1,728 @@
+.clear{
+	clear: both;
+}
+a{
+	color: #5b5b5b;
+	text-decoration: none;
+}
+body{
+	background:url(images/background.png) repeat;
+}
+.pinkLine{
+	height: 9px;
+	background-color: #ff9d9d;
+}
+/*index.php
+==================================================================================================*/
+/*ヘッダー
+======================================================================*/
+#header{
+	background: url(images/header_bg.jpg) repeat-x;
+	height: 69px;
+}
+#headerInner{
+	padding-top: 20px;
+	width: 880px;
+	margin: 0 auto;
+}
+#headerLeft{
+	float: left;
+}
+#headerRight{
+	float: right;
+}
+#headerRight ul li{
+	float: left;
+	margin-right: 20px;
+}
+#headerRight ul li input{
+	width: 200px;
+	height: 27px;
+}
+#headerRight ul li img{
+	cursor: pointer;
+}
+/*キャッチコピー
+======================================================================*/
+#cCopy{
+	background-color: #ffdfdf;
+	height: 40px;
+}
+#cCopyInner{
+	width: 880px;
+	margin: 0 auto;
+	padding-top: 9px;
+}
+#cCopyInner h1{
+	color: #ff8585;
+}
+/*トピックス
+======================================================================*/
+#topics{
+	width: 880px;
+	margin: 0 auto;
+	padding-bottom: 28px;
+}
+#topics ul li{
+	float: left;
+	margin-top: 30px;
+	padding-right: 28px;
+}
+#topicsRight{
+	float: right;
+	margin-top: 13px;
+}
+/*コンテンツ
+======================================================================*/
+#contents{
+	width: 880px;
+	margin: 0 auto;
+	padding-bottom: 100px;
+}
+/**/
+#topic_line{
+	background: url(images/topic_line.png) repeat-x;
+	color: #8dd3c7;
+	height: 44px;
+	padding-top: 11px;
+}
+#topic_line.new{
+	background: url(images/topic_line2.png) repeat-x;
+	color: #8dd3c7;
+	height: 44px;
+	padding-top: 11px;
+}
+#topic_line dt{
+	float: left;
+	color: #8dd3c7;
+}
+#topic_line dd{
+	color: #8dd3c7;
+	float: right;
+	background: url(images/yester_arrow.png) no-repeat right;
+	margin-right: 20px;
+	padding-right: 67px;
+}
+#topic_line.new dt{
+	color: #f97474;
+}
+#topic_line.new dd{
+	color: #f97474;
+	background: url(images/new_arrow.png) no-repeat right;
+}
+/**/
+#contents article{
+	padding: 29px 0 29px 0;
+	border-bottom: 1px dotted #f97474;
+}
+#contents article.lastArticle{
+	border-bottom: none;
+}
+#contents article img#articleImage{
+	float: left;
+	object-fit: cover;
+	width: 80px;
+	height: 80px;
+	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
+	border-radius: 90px;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    margin-right: 30px;
+}
+#contents article #articleRight{
+	float: left;
+	color: #5b5b5b;
+}
+#contents article #articleRight dl{
+	font-size: 14px;
+	margin-top: 3px;
+	margin-bottom: 5px;
+}
+#contents article #articleRight dl dt{
+	float: left;
+	margin-right: 70px;
+}
+#contents article #articleRight dl dd{
+	float: left;
+}
+#contents article #articleRight h3{
+	width: 750px;
+}
+#contents article #articleRight h3 a{
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 17px;
+}
+/*ページング*/
+#contents .page{
+	text-align: center;
+}
+#contents .pagination{
+	display: inline-block;
+	width: auto;
+	max-width: 500px;
+	text-align: center;
+	margin: 82px 0 45px 0;
+}
+#contents .pagination:after{
+	content: "";
+	clear: both;
+	display: block;
+}
+#contents .pagination li{
+	display: inline-block;
+	float: left;
+	width: 25px;
+	height: 25px;
+	border: 3px solid #fecc72;
+	border-radius: 3px 3px 3px 3px;
+	margin-right: 10px;
+}
+#contents .pagination li.active{
+	background-color: #fecc72;
+	color: white;
+}
+#contents .pagination li.next_page{
+	border: none;
+	text-decoration: underline;
+	margin-left: 8px;
+	font-size: 18px;
+}
+#contents .pagination li a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+/*フッダー
+======================================================================*/
+#toTop{
+	width: 880px;
+	margin: 0 auto;
+}
+#toTop a{
+	float: right;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #fecc72;
+	border-radius: 3px 3px 0 0;
+	padding: 14px;
+	color: #5b5b5b;
+}
+#footer{
+	/*height: 160px;*/
+	font-size: 12px;
+	background: url(images/footer_background.jpg) repeat-x;
+	padding-top: 60px;
+	padding-bottom: 36px;
+}
+#footerInner{
+	width: 880px;
+	margin: 0 auto;
+}
+#footer ul li{
+	margin-top: 22px;
+	margin-right: 8px;
+	padding-right: 8px;
+	border-right: 1px solid white;
+	line-height: 1;
+	text-decoration: underline;
+	float: left;
+}
+#footer ul li:last-child{
+	margin-right: 0;
+	padding-right: 0;
+	border-right: none;
+}
+#footer ul li a{
+	color: white;
+}
+/*insert.php
+==================================================================================================*/
+#insertTopic{
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 880px;
+	background-color: white;
+	border: 1px solid #d0d0d0;
+	border-top: none;
+	margin-bottom: 100px;
+}
+#insertTopic #insertTitle{
+	border-bottom: 1px dotted #ff9d9d;
+}
+#insertTopic #insertTitle h3{
+	padding: 26px;
+	color: #ff9d9d;
+	font-weight: bold;
+	font-size: 19px;
+}
+#insertTopic #insertInner{
+	padding: 33px 46px 33px 46px;
+}
+#insertTopic p{
+	color: #5b5b5b;
+	font-weight: bold;
+	margin-bottom: 6px;
+}
+#insertTopic p.checkbox{
+	margin-bottom: 45px;
+}
+#insertTopic input{
+	width: 300px;
+	height: 28px;
+	margin-bottom: 26px;
+}
+#insertTopic input.checkbox{
+	margin-bottom: 0px;
+	width: auto;
+}
+#insertTopic input.submit{
+	width: 180px;
+	height: 46px;
+	background-color: #92d3c8;
+	border: 1px #c0c0c0 solid;
+	border-radius: 3px 3px 3px 3px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+}
+#insertTopic textarea{
+	width: 600px;
+	height: 146px;
+	margin-bottom: 25px;
+}
+#insertTopic #explain{
+	color: #5b5b5b;	
+	font-size: 13px;
+	margin-bottom: 50px;
+}
+
+/*detail.php
+==================================================================================================*/
+#detailContents{
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 880px;
+	background-color: white;
+	border: 1px solid #d0d0d0;
+	border-top: none;
+	margin-bottom: 100px;
+}
+#detailContents #contentHeader{
+	border-bottom: 1px dotted #ff9d9d;
+}
+#detailContents #contentHeader #headerInner{
+	padding: 22px 48px 22px 48px;
+	color: #ff9d9d;
+	font-weight: bold;
+	font-size: 19px;
+}
+#detailContents #contentHeader #headerInner img{
+	width: 80px;
+	height: 80px;
+	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
+	border-radius: 90px;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    float: left;
+    margin-right: 35px;
+}
+#detailContents #contentHeader #headerInner #headerRight{
+	float: left;
+	margin-top: 16px;
+}
+#detailContents #contentHeader #headerInner #headerRight h1{
+	font-weight: bold;
+	width: 700px;
+}
+#detailContents #contentHeader #headerInner #headerRight ul li{
+	color: #6d6d6d;
+	font-size: 15px;
+}
+
+#detailContents #detailInner{
+	padding: 48px;
+}
+#detailContents #detailInner article{
+	padding-bottom: 50px;
+	margin-bottom: 50px;
+	border-bottom: 1px dotted #ff7272;
+	color: #7c7c7c;
+}
+#detailContents #detailInner article.last{
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	border-bottom: none;
+}
+#detailContents #detailInner article p{
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+#detailContents #detailInner article #body{
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+#detailContents #detailInner article #topic_image{
+	margin-bottom: 20px;
+}
+#detailContents #detailInner article ul li{
+	float: left;
+	line-height: 1;
+	font-size: 18px;
+	margin-right: 12px;
+}
+#detailContents #detailInner article ul li.plus{
+	color: #f59797;
+	text-decoration: underline;
+	cursor:pointer;
+}
+#detailContents #detailInner article ul li.minus{
+	color: #8bcdc1;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+
+#postBox h4{
+	color: #ff9d9d;
+	font-weight: bold;
+	font-size: 19px;
+	margin-bottom: 27px;
+}
+#postBox #insertInner{
+	padding: 33px 46px 33px 46px;
+}
+#postBox p{
+	color: #5b5b5b;
+	font-weight: bold;
+	margin-bottom: 6px;
+}
+#postBox p.checkbox{
+	margin-bottom: 45px;
+}
+#postBox input{
+	width: 300px;
+	height: 28px;
+	margin-bottom: 26px;
+}
+#postBox input.checkbox{
+	margin-bottom: 0px;
+	width: auto;
+}
+#postBox input.submit{
+	width: 180px;
+	height: 46px;
+	background-color: #92d3c8;
+	border: 1px #c0c0c0 solid;
+	border-radius: 3px 3px 3px 3px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+}
+#postBox textarea{
+	width: 600px;
+	height: 146px;
+	margin-bottom: 25px;
+}
+#postBox #explain{
+	color: #5b5b5b;	
+	font-size: 13px;
+	margin-bottom: 50px;
+}
+
+
+
+
+
+#pages{
+	text-align: center;
+	margin: 82px 0 45px 0;
+}
+#pages #pagesInnner{
+	margin: 82px 0 45px 0;
+}
+#pages a{
+	width: 25px;
+	height: 25px;
+	border: 3px solid #fecc72;
+	border-radius: 3px 3px 3px 3px;
+	text-align: center;
+	margin-right: 10px;
+	padding: 6px 8px 6px 8px;
+}
+#pages a.current_page{
+	background-color: #fecc72;
+	color: black;
+}
+#pages a.next_page{
+	border: none;
+	text-decoration: underline;
+	margin-left: 8px;
+	font-size: 18px;
+}
+#toTopPageWrap{
+	margin: 0 auto;
+	width: 177px;
+}
+#toTopPage{
+	background-color: #93d4c9;
+	border: 1px solid #efeeee;
+	text-align: center;
+	padding: 15px 0 15px 0;
+	width: 177px;
+	border-radius: 4px;
+	margin: 100px 0 100px 0;
+	cursor: pointer;
+}
+#toTopPage a{
+	color: white;
+}
+/*関連トピック*/
+#related_topic{
+	width: 880px;
+	margin:0 auto;
+}
+#related_topic #related_bar{
+	background: url(images/related_topic.png) repeat-x;
+	height: 44px;
+	padding-top: 10px;
+}
+#related_topic #related_bar p{
+	color: #e7b55d;
+	font-size: 17px;
+	font-weight: bold;
+	margin-left: 17px;
+}
+#related_topic #relatedInner{
+	padding: 50px 0 90px 0;
+}
+#related_topic #relatedInner article{
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+	border-bottom: 1px dotted #ff706f;
+}
+#related_topic #relatedInner article.last{
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	border-bottom: none;
+}
+#related_topic #relatedInner img{
+	float: left;
+	width: 80px;
+	height: 80px;
+	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
+	border-radius: 90px;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    margin-right: 23px;
+}
+#related_topic #relatedInner #articleRight{
+	float: left;
+	color: #5b5b5b;
+}
+#related_topic #relatedInner #articleRight dl{
+	font-size: 14px;
+	padding-top: 17px;
+}
+#related_topic #relatedInner #articleRight dl dt{
+	float: left;
+	margin-right: 57px;
+}
+#related_topic #relatedInner #articleRight dl dd{
+	float: left;
+}
+#related_topic #relatedInner #articleRight h4{
+	text-decoration: underline;
+}
+/*人気トピック*/
+#star_topic{
+	width: 880px;
+	margin:0 auto;
+}
+#star_topic #related_bar{
+	background: url(images/topic_line.png) repeat-x;
+	height: 44px;
+	padding-top: 10px;
+}
+#star_topic #related_bar p{
+	color: #8dd3c7;
+	font-size: 17px;
+	font-weight: bold;
+	margin-left: 17px;
+}
+#star_topic #relatedInner{
+	padding: 50px 0 90px 0;
+}
+#star_topic #relatedInner article{
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+	border-bottom: 1px dotted #ff706f;
+}
+#star_topic #relatedInner article.last{
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	border-bottom: none;
+}
+#star_topic #relatedInner img{
+	float: left;
+	width: 80px;
+	height: 80px;
+	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
+	border-radius: 90px;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    margin-right: 23px;
+}
+#star_topic #relatedInner #articleRight{
+	float: left;
+	color: #5b5b5b;
+}
+#star_topic #relatedInner #articleRight dl{
+	font-size: 14px;
+	padding-top: 17px;
+}
+#star_topic #relatedInner #articleRight dl dt{
+	float: left;
+	margin-right: 57px;
+}
+#star_topic #relatedInner #articleRight dl dd{
+	float: left;
+}
+#star_topic #relatedInner #articleRight h4{
+	text-decoration: underline;
+}
+/*人気トピック*/
+#new_topic{
+	width: 880px;
+	margin:0 auto;
+}
+#new_topic #related_bar{
+	background: url(images/topic_line2.png) repeat-x;
+	height: 44px;
+	padding-top: 10px;
+}
+#new_topic #related_bar p{
+	color: #f97474;
+	font-size: 17px;
+	font-weight: bold;
+	margin-left: 17px;
+}
+#new_topic #relatedInner{
+	padding: 50px 0 90px 0;
+}
+#new_topic #relatedInner article{
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+	border-bottom: 1px dotted #ff706f;
+}
+#new_topic #relatedInner article.last{
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	border-bottom: none;
+}
+#new_topic #relatedInner img{
+	float: left;
+	width: 80px;
+	height: 80px;
+	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
+	border-radius: 90px;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    margin-right: 23px;
+}
+#new_topic #relatedInner #articleRight{
+	float: left;
+	color: #5b5b5b;
+}
+#new_topic #relatedInner #articleRight dl{
+	font-size: 14px;
+	padding-top: 17px;
+}
+#new_topic #relatedInner #articleRight dl dt{
+	float: left;
+	margin-right: 57px;
+}
+#new_topic #relatedInner #articleRight dl dd{
+	float: left;
+}
+#new_topic #relatedInner #articleRight h4{
+	text-decoration: underline;
+}
+/*search.php
+==================================================================================================*/
+#searchTitle{
+	margin: 0 auto;
+	width: 880px;
+	padding: 47px 0 30px 0;
+	color: #fecc72;
+	font-size: 27px;
+	font-weight: bold;
+}
+/*contact.php
+==================================================================================================*/
+#insertTopic #insertInner .contact_info{
+	margin-bottom: 46px;
+	color: #5b5b5b;
+}
+#insertTopic #insertInner .contact_info dt{
+	margin-bottom: 15px;
+	font-size: 17px;
+	font-weight: bold;
+}
+#insertTopic #insertInner .contact_info dd{
+	font-size: 15px;
+}
+#insertTopic #insertInner .contact_info dd a{
+	color: #fecc72;
+}
+/*adcontact.php
+==================================================================================================*/
+#insertTopic #insertInner #ad{
+	color: #7c7c7c;
+	font-size: 14px;
+}
+#insertTopic #insertInner #ad h3{
+	margin-bottom: 30px;
+}
+#insertTopic #insertInner #ad #input{
+	margin-bottom: 20px;
+}
+#insertTopic #insertInner #ad input.check{
+	width: auto;
+	height: auto;
+	margin-bottom: 10px;
+
+}
+/*agreement.html
+==================================================================================================*/
+#insertTopic #table{
+	margin-bottom: 35px;
+	color: #5b5b5b;
+	font-weight: normal;
+}
+#insertTopic #table h3{
+	font-weight: bold;
+}
+#insertTopic #table p{
+	font-weight: normal;	
+}
+#insertTopic #table ul.num{
+	padding-left: 15px;
+}
+#insertTopic #table ul.num li.num:before{
+	counter-increment:sample;
+	content:counter(sample)". ";
+}
+#insertTopic #table h3{
+	counter-reset:sample;
+}
+#insertTopic #table ul.alpha{
+	padding-left: 15px;
+}
+#insertTopic #table ul.alpha li:before{
+	counter-increment:alpha;
+	content: counter(alpha, lower-alpha)". ";
+}
+#insertTopic #table ul{
+	counter-reset:alpha;	
+}
