@@ -22,7 +22,7 @@
 					<dd>{{mb_substr($item->created_at, 0, 16)}}</dd>
 					<div class="clear"></div>
 				</dl>
-				<h3><a href="detail.php?id=1">{{$item->title}}</a></h3>
+				<h3><a href="detail?id={{$item->id}}">{{$item->title}}</a></h3>
 			</div>
 			<div class="clear"></div>
 		</article>
