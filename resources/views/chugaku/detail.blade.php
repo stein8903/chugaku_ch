@@ -48,46 +48,45 @@
 			</article>
 
 			<!--トピックに対するコメント-->
-			
-					<article>
-						<p>2. 匿名　2019.03.16</p>
-						<div id="body">
-							いいトピックだいいトピックだいいトピックだ
-							いいトピックだいいトピックだいいトピックだ
-							いいトピックだいいトピックだいいトピックだ
+			@foreach($comments as $value)
+				<article>
+					<p>2. {{ $value->user_name }}　{{ mb_substr($value->created_at, 0, 16) }}</p>
+					<div id="body">
+						{{ $value->body }}
+					</div>
+					
+						<div id="topic_image">
+							@if(isset($value->thumbnail))
+								<img src="{{ $value->thumbnail }}">
+							@endif
 						</div>
-						
-							<div id="topic_image">
-								
-									<img src="files/" style="width:400px; height:400px;">
-								
-							</div>
-						
-						<ul>
-							<form method="post" name="comment_like_form<?php ?>">
-								<input type="hidden" name="comment_likee" value="<?php echo "";?>">
-							</form>
-							<form method="post" name="comment_dislike_form<?php echo "";?>">
-								<input type="hidden" name="comment_dislikee" value="<?php echo "";?>">
-							</form>
-							<li class="plus" onclick="comment_like_form<?php echo "";?>.submit();">+5</li>
-							<li><img src="images/"></li>
-							<li class="minus" onclick="comment_dislike_form<?php echo "";?>.submit();">-2</li>
-							<div class="clear"></div>
-						</ul>
-					</article>
-
+					
+					<ul>
+						<form method="post" name="comment_like_form<?php ?>">
+							<input type="hidden" name="comment_likee" value="<?php echo "";?>">
+						</form>
+						<form method="post" name="comment_dislike_form<?php echo "";?>">
+							<input type="hidden" name="comment_dislikee" value="<?php echo "";?>">
+						</form>
+						<li class="plus" onclick="comment_like_form<?php echo "";?>.submit();">+5</li>
+						<li><img src="images/"></li>
+						<li class="minus" onclick="comment_dislike_form<?php echo "";?>.submit();">-2</li>
+						<div class="clear"></div>
+					</ul>
+				</article>
+			@endforeach
 
 			<div id="postBox">
-				<form action="{{action('CommentController@add')}}" method="post" enctype="multipart/form-data">
+				<form action="comment_confirm" method="post" enctype="multipart/form-data">
 					{{ csrf_field() }}
+					<input type="hidden" name="topic_id" value="{{$id}}">
 					<h4>コメントを投稿する</h4>
 					<p>名前</p>
 					<input type="text" name="user_name" placeholder="空白でもOK">
 					<p>本文</p>
 					<textarea placeholder="必須入力" name="body"></textarea>
 					<p>写真アップロード（1MBまで可）</p>
-					<input type="file" name="upfile">
+					<input type="file" name="thumbnail">
 					<!-- <p class="checkbox"><input type="checkbox" value="1" class="checkbox" name="check">IDを表示する（なりすましが防止できます）</p> -->
 					<input type="submit" value="投稿" class="submit">
 				</form>
@@ -97,10 +96,10 @@
 	</div>
 
 	<!--ページング-->
-	<div id="pages">
-				<a href="detail.php?page=">1</a>
-				<a href="detail.php?page=">2</a>
+	<div class="page">
+		{{$comments->links()}}
 	</div>
+
 	<div id="toTopPageWrap">
 		<div id="toTopPage">
 			<a href="index.php">トップページに戻る</a>

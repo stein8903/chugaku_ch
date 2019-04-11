@@ -31,7 +31,13 @@ class TopicController extends Controller
 
     public function detail(Request $req){
         $item = Topic::find($req->id);
-        return view("chugaku.detail",["item"=>$item]);
+        $comments = DB::table("comments")->where("topic_id",$req->id)->paginate(3);
+
+        if (isset($_POST["user_name"])) {
+            return view("chugaku.detail",["item"=>$item,"id"=>$req->id,"comments"=>$comments]);
+        }else{
+            return view("chugaku.detail",["item"=>$item,"id"=>$req->id,"comments"=>$comments]);
+        }
     }
 
 

@@ -320,6 +320,7 @@ body{
 #detailContents #contentHeader #headerInner img{
 	width: 80px;
 	height: 80px;
+	object-fit: cover;
 	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
 	border-radius: 90px;
     -webkit-border-radius: 90px;
@@ -364,6 +365,11 @@ body{
 }
 #detailContents #detailInner article #topic_image{
 	margin-bottom: 20px;
+}
+#detailContents #detailInner article #topic_image img{
+	width: auto;
+    height: auto;
+    max-width: 100%;
 }
 #detailContents #detailInner article ul li{
 	float: left;
