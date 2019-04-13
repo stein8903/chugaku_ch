@@ -45,3 +45,6 @@ Route::post("/detail", "TopicController@detail");
 
 Route::post("/comment_confirm", "CommentController@add");
 Route::post("/comment_upload", "CommentController@upload");
+
+
+

@@ -35,14 +35,16 @@
 				</div>
 				<ul>
 					<form method="post" name="main_like_form">
-						<input type="hidden" name="main_likee" value="">
+					{{ csrf_field() }}
+						<input type="hidden" name="topic_like" value="">
 					</form>
 					<form method="post" name="main_dislike_form">
-						<input type="hidden" name="main_dislikee" value="">
+					{{ csrf_field() }}
+						<input type="hidden" name="topic_dislike" value="">
 					</form>
-					<li class="plus" onclick="main_like_form.submit();">+4</li>
+					<li class="plus" onclick="main_like_form.submit();">+{{ $topic_likes["likes"] }}</li>
 					<li><img src="images/"></li>
-					<li class="minus" onclick="main_dislike_form.submit();">-6</li>
+					<li class="minus" onclick="main_dislike_form.submit();">-{{ $topic_likes["dislikes"] }}</li>
 					<div class="clear"></div>
 				</ul>
 			</article>

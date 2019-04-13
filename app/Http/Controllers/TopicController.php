@@ -32,12 +32,42 @@ class TopicController extends Controller
     public function detail(Request $req){
         $item = Topic::find($req->id);
         $comments = DB::table("comments")->where("topic_id",$req->id)->paginate(3);
+        $topic_likes["likes"] = DB::table("topic_likes")->where("topic_id",$req->id)->where("likes",true)->count();
+        $topic_likes["dislikes"] = DB::table("topic_likes")->where("topic_id",$req->id)->where("dislikes",true)->count();
+        
+        if (isset($_POST["topic_like"])) {
+            
+            $ip = DB::table("topic_likes")->where("topic_id",$req->id)->where("likes",true)->where("ip",$_SERVER["REMOTE_ADDR"])->count();
+            if ($ip > 0) {
+                echo "<script>alert('すでにいいねを押しています！');</script>";
+            }else{
+                $param = [
+                    "topic_id"=>$req->id,
+                    "ip"=>$_SERVER["REMOTE_ADDR"],
+                    "likes"=>true,
+                    "dislikes"=>false,
+                    "date_time"=>date("Y-m-d H:i:s"),
+                ];
+                DB::table("topic_likes")->insert($param);
+            }
 
-        if (isset($_POST["user_name"])) {
-            return view("chugaku.detail",["item"=>$item,"id"=>$req->id,"comments"=>$comments]);
-        }else{
-            return view("chugaku.detail",["item"=>$item,"id"=>$req->id,"comments"=>$comments]);
+        }else if(isset($_POST["topic_dislike"])){
+            $ip = DB::table("topic_likes")->where("topic_id",$req->id)->where("dislikes",true)->where("ip",$_SERVER["REMOTE_ADDR"])->count();
+            if ($ip > 0) {
+                echo "<script>alert('すでにいいねを押しています！');</script>";
+            }else{
+                $param = [
+                    "topic_id"=>$req->id,
+                    "ip"=>$_SERVER["REMOTE_ADDR"],
+                    "likes"=>false,
+                    "dislikes"=>true,
+                    "date_time"=>date("Y-m-d H:i:s"),
+                ];
+                DB::table("topic_likes")->insert($param);
+            }
         }
+
+        return view("chugaku.detail",["item"=>$item,"id"=>$req->id,"comments"=>$comments,"topic_likes"=>$topic_likes]);
     }
 
 
