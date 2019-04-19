@@ -516,6 +516,7 @@ body{
 	float: left;
 	width: 80px;
 	height: 80px;
+	object-fit: cover;
 	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
 	border-radius: 90px;
     -webkit-border-radius: 90px;
@@ -573,6 +574,7 @@ body{
 	float: left;
 	width: 80px;
 	height: 80px;
+	object-fit: cover;
 	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
 	border-radius: 90px;
     -webkit-border-radius: 90px;
@@ -630,6 +632,7 @@ body{
 	float: left;
 	width: 80px;
 	height: 80px;
+	object-fit: cover;
 	box-shadow: 0 0 0 5px #ffffff, 0 0 0 7px #ededed;
 	border-radius: 90px;
     -webkit-border-radius: 90px;

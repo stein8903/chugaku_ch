@@ -35,11 +35,11 @@
 				</div>
 				<ul>
 					<form method="post" name="main_like_form">
-					{{ csrf_field() }}
+						{{ csrf_field() }}
 						<input type="hidden" name="topic_like" value="">
 					</form>
 					<form method="post" name="main_dislike_form">
-					{{ csrf_field() }}
+						{{ csrf_field() }}
 						<input type="hidden" name="topic_dislike" value="">
 					</form>
 					<li class="plus" onclick="main_like_form.submit();">+{{ $topic_likes["likes"] }}</li>
@@ -64,15 +64,17 @@
 						</div>
 					
 					<ul>
-						<form method="post" name="comment_like_form<?php ?>">
-							<input type="hidden" name="comment_likee" value="<?php echo "";?>">
+						<form method="post" name="comment_like_form{{ $value->id }}">
+							{{ csrf_field() }}
+							<input type="hidden" name="comment_like" value="{{ $value->id }}">
 						</form>
-						<form method="post" name="comment_dislike_form<?php echo "";?>">
-							<input type="hidden" name="comment_dislikee" value="<?php echo "";?>">
+						<form method="post" name="comment_dislike_form{{ $value->id }}">
+							{{ csrf_field() }}
+							<input type="hidden" name="comment_dislike" value="{{ $value->id }}">
 						</form>
-						<li class="plus" onclick="comment_like_form<?php echo "";?>.submit();">+5</li>
+						<li class="plus" onclick="comment_like_form{{ $value->id }}.submit();">+5</li>
 						<li><img src="images/"></li>
-						<li class="minus" onclick="comment_dislike_form<?php echo "";?>.submit();">-2</li>
+						<li class="minus" onclick="comment_dislike_form{{ $value->id }}.submit();">-2</li>
 						<div class="clear"></div>
 					</ul>
 				</article>
@@ -114,20 +116,20 @@
 			<p>関連トピック</p>
 		</div>
 		<div id="relatedInner">
-			
+			@foreach($rel_topics as $item)
 				<article>
-					<img src="">
+					<img src="{{$item->thumnail}}">
 					<div id="articleRight">
 						<dl>
 							<dt>2コメント</dt>
-							<dd>2019.03.16</dd>
+							<dd>{{ mb_substr($item->created_at,0,16) }}</dd>
 							<div class="clear"></div>
 						</dl>
-						<h4><a href="detail.php?id="></a></h4>
+						<h4><a href="detail?id={{$item->id}}">{{ $item->title }}</a></h4>
 					</div>
 					<div class="clear"></div>
 				</article>
-			
+			@endforeach
 		</div>
 	</div>
 	
@@ -137,20 +139,20 @@
 			<p>人気トピック</p>
 		</div>
 		<div id="relatedInner">
-			
+			@foreach($pop_topics as $item)
 				<article>
-					<img src="">
+					<img src="{{$item->thumnail}}">
 					<div id="articleRight">
 						<dl>
 							<dt>2コメント</dt>
-							<dd>2019.03.16</dd>
+							<dd>{{ mb_substr($item->created_at,0,16) }}</dd>
 							<div class="clear"></div>
 						</dl>
-						<h4><a href="detail.php?id=">不倫</a></h4>
+						<h4><a href="detail?id={{$item->id}}">{{ $item->title }}</a></h4>
 					</div>
 					<div class="clear"></div>
 				</article>
-			
+			@endforeach
 		</div>
 	</div>
 
@@ -159,20 +161,20 @@
 			<p>新着トピック</p>
 		</div>
 		<div id="relatedInner">
-			
+			@foreach($new_topics as $item)
 				<article>
-					<img src="">
+					<img src="{{$item->thumnail}}">
 					<div id="articleRight">
 						<dl>
 							<dt>コメント</dt>
-							<dd>2019.03.16</dd>
+							<dd>{{ mb_substr($item->created_at,0,16) }}</dd>
 							<div class="clear"></div>
 						</dl>
-						<h4><a href="">不倫</a></h4>
+						<h4><a href="detail?id={{$item->id}}">{{ $item->title }}</a></h4>
 					</div>
 					<div class="clear"></div>
 				</article>
-			
+			@endforeach
 		</div>
 	</div><!--サイドバー-->
 @endsection

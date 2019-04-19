@@ -32,8 +32,9 @@ class TopicController extends Controller
     public function detail(Request $req){
         $item = Topic::find($req->id);
         $comments = DB::table("comments")->where("topic_id",$req->id)->paginate(3);
-        $topic_likes["likes"] = DB::table("topic_likes")->where("topic_id",$req->id)->where("likes",true)->count();
-        $topic_likes["dislikes"] = DB::table("topic_likes")->where("topic_id",$req->id)->where("dislikes",true)->count();
+        $pop_topics = Topic::orderByRaw("cast(created_at as date) desc")->orderBy("likes","desc")->limit(3)->get();
+        $new_topics = Topic::orderBy("created_at","desc")->limit(3)->get();
+        $rel_topics = Topic::where("title","LIKE","%".$item->title."%")->limit(3)->get();
         
         if (isset($_POST["topic_like"])) {
             
@@ -54,20 +55,51 @@ class TopicController extends Controller
         }else if(isset($_POST["topic_dislike"])){
             $ip = DB::table("topic_likes")->where("topic_id",$req->id)->where("dislikes",true)->where("ip",$_SERVER["REMOTE_ADDR"])->count();
             if ($ip > 0) {
-                echo "<script>alert('すでにいいねを押しています！');</script>";
+                echo "<script>alert('このトピックにはすでにいいねを押しています！');</script>";
             }else{
                 $param = [
                     "topic_id"=>$req->id,
+                    "ip"=>$_SERVER["REMOTE_ADDR"],
+                    "likes"=>true,
+                    "dislikes"=>false,
+                    "date_time"=>date("Y-m-d H:i:s"),
+                ];
+                DB::table("topic_likes")->insert($param);
+            }
+        }else if(isset($_POST["comment_like"])){
+            $id = DB::table("comment_likes")->where("comment_id",$_POST["comment_like"])->where("likes",true)->where("ip",$_SERVER["REMOTE_ADDR"])->count();
+            if ($id > 0) {
+                echo "<script>alert('このコメントにはすでにいいねを押しています！');</script>";
+            }else{
+                $param = [
+                    "comment_id"=>$_POST["comment_like"],
+                    "ip"=>$_SERVER["REMOTE_ADDR"],
+                    "likes"=>true,
+                    "dislikes"=>false,
+                    "date_time"=>date("Y-m-d H:i:s"),
+                ];
+                DB::table("comment_likes")->insert($param);
+            }
+        }else if(isset($_POST["comment_dislike"])){
+            $id = DB::table("comment_likes")->where("comment_id",$_POST["comment_dislike"])->where("dislikes",true)->where("ip",$_SERVER["REMOTE_ADDR"])->count();
+            if ($id > 0) {
+                echo "<script>alert('このコメントにはすでにいいねを押しています！');</script>";
+            }else{
+                $param = [
+                    "comment_id"=>$_POST["comment_like"],
                     "ip"=>$_SERVER["REMOTE_ADDR"],
                     "likes"=>false,
                     "dislikes"=>true,
                     "date_time"=>date("Y-m-d H:i:s"),
                 ];
-                DB::table("topic_likes")->insert($param);
+                DB::table("comment_likes")->insert($param);
             }
         }
 
-        return view("chugaku.detail",["item"=>$item,"id"=>$req->id,"comments"=>$comments,"topic_likes"=>$topic_likes]);
+        $topic_likes["likes"] = DB::table("topic_likes")->where("topic_id",$req->id)->where("likes",true)->count();
+        $topic_likes["dislikes"] = DB::table("topic_likes")->where("topic_id",$req->id)->where("dislikes",true)->count();
+
+        return view("chugaku.detail",["item"=>$item,"id"=>$req->id,"comments"=>$comments,"topic_likes"=>$topic_likes,"new_topics"=>$new_topics,"pop_topics"=>$pop_topics,"rel_topics"=>$rel_topics]);
     }
 
 
