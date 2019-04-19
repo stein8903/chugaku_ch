@@ -17,3 +17,17 @@
 	
 	* Laravel Framework 5.8.4
 	* mysql 5.7~?
+	* php 7.2~
+
+## cloneする際の注意点
+	* 求められるサーバーのミドルウェア
+		* mysql 5.7以上
+		* php 7.2以上
+	* .gitignoreで無視されるファイル
+		* .env
+			DBの情報あたりをお使いのDBサーバーの情報に合うように修正してください。
+		* vendor/
+			composer installで設置してください。
+	* その他
+		* config/database.phpの'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',の行をコメントアウトしてください。
+		（ローカル開発環境用(mamp)に記載しましたがいらないです。コメントアウトしないとmigrateができないです。）
