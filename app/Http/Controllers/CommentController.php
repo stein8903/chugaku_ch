@@ -11,7 +11,9 @@ class CommentController extends Controller
     	$thum_name = uniqid("THUM_") . "." . $req->file('thumbnail')->guessExtension(); // TMPファイル名
         $req->file('thumbnail')->move(public_path() . "/img/tmp", $thum_name);
         $thum = "img/tmp/".$thum_name;
-
+        if (empty($req->user_name)) {
+            $req->user_name = "匿名";
+        }
         $hash = array(
         	"topic_id"=>$req->topic_id,
             "user_name"=>$req->user_name,
