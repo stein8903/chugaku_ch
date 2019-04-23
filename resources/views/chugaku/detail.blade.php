@@ -55,7 +55,7 @@
 					<p>2. {{ $value->user_name }}　{{ mb_substr($value->created_at, 0, 16) }}</p>
 					<div id="body">
 						{{ $value->body }}
-					</div>
+					</div>ID：{{$value->id}}
 					
 						<div id="topic_image">
 							@if(isset($value->thumbnail))
@@ -72,13 +72,17 @@
 							{{ csrf_field() }}
 							<input type="hidden" name="comment_dislike" value="{{ $value->id }}">
 						</form>
-						<li class="plus" onclick="comment_like_form{{ $value->id }}.submit();">+5</li>
+						<li class="plus" onclick="comment_like_form{{ $value->id }}.submit();">+{{ $value->comment_like()->where("likes",true)->count() }}</li>
 						<li><img src="images/"></li>
-						<li class="minus" onclick="comment_dislike_form{{ $value->id }}.submit();">-2</li>
+						<li class="minus" onclick="comment_dislike_form{{ $value->id }}.submit();">-{{ $value->comment_like()->where("dislikes",true)->count() }}</li>
 						<div class="clear"></div>
 					</ul>
 				</article>
 			@endforeach
+
+			<div class="page">
+				{{ $comments -> appends(request()->input()) -> links() }}
+			</div>
 
 			<div id="postBox">
 				<form action="comment_confirm" method="post" enctype="multipart/form-data">
@@ -97,11 +101,6 @@
 			</div>
 
 		</div>
-	</div>
-
-	<!--ページング-->
-	<div class="page">
-		{{$comments->links()}}
 	</div>
 
 	<div id="toTopPageWrap">

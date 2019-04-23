@@ -34,8 +34,8 @@
 		@endif
 
 		<!--ページング-->
-		<div id="pages">
-			<a href="search.php?page=1">1</a>
+		<div class="page">
+			{{ $items -> appends(request()->input()) -> links() }}
 		</div>
 	</div>
 @endsection

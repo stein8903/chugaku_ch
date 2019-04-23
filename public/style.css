@@ -154,22 +154,22 @@ body{
 	font-size: 17px;
 }
 /*ページング*/
-#contents .page{
+.page{
 	text-align: center;
 }
-#contents .pagination{
+.pagination{
 	display: inline-block;
 	width: auto;
 	max-width: 500px;
 	text-align: center;
 	margin: 82px 0 45px 0;
 }
-#contents .pagination:after{
+.pagination:after{
 	content: "";
 	clear: both;
 	display: block;
 }
-#contents .pagination li{
+.pagination li{
 	display: inline-block;
 	float: left;
 	width: 25px;
@@ -178,17 +178,17 @@ body{
 	border-radius: 3px 3px 3px 3px;
 	margin-right: 10px;
 }
-#contents .pagination li.active{
+.pagination li.active{
 	background-color: #fecc72;
 	color: white;
 }
-#contents .pagination li.next_page{
+.pagination li.next_page{
 	border: none;
 	text-decoration: underline;
 	margin-left: 8px;
 	font-size: 18px;
 }
-#contents .pagination li a{
+.pagination li a{
 	display: inline-block;
 	width: 100%;
 	height: 100%;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Topic;
+use App\Comment;
 use Illuminate\Support\Facades\DB;
 
 class TopicController extends Controller
@@ -19,7 +20,7 @@ class TopicController extends Controller
     }
     //検索
     public function search(Request $req){
-    	$items = Topic::where('title',"LIKE","%".$req->search."%")->get();
+    	$items = Topic::where('title',"LIKE","%".$req->search."%")->orWhere('body',"LIKE","%".$req->search."%")->paginate(2);
     	return view("chugaku.search",["items"=>$items,"search_words"=>$req->search]);
     }
 
@@ -31,7 +32,8 @@ class TopicController extends Controller
 
     public function detail(Request $req){
         $item = Topic::find($req->id);
-        $comments = DB::table("comments")->where("topic_id",$req->id)->paginate(5);
+        // $comments = DB::table("comments")->where("topic_id",$req->id)->paginate(5);
+        $comments = Comment::where("topic_id",$req->id)->paginate(5);
         $pop_topics = Topic::orderByRaw("cast(created_at as date) desc")->orderBy("likes","desc")->limit(3)->get();
         $new_topics = Topic::orderBy("created_at","desc")->limit(3)->get();
         $rel_topics = Topic::where("title","LIKE","%".$item->title."%")->limit(3)->get();
@@ -86,7 +88,7 @@ class TopicController extends Controller
                 echo "<script>alert('このコメントにはすでにいいねを押しています！');</script>";
             }else{
                 $param = [
-                    "comment_id"=>$_POST["comment_like"],
+                    "comment_id"=>$_POST["comment_dislike"],
                     "ip"=>$_SERVER["REMOTE_ADDR"],
                     "likes"=>false,
                     "dislikes"=>true,
