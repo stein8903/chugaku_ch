@@ -32,7 +32,6 @@ class TopicController extends Controller
 
     public function detail(Request $req){
         $item = Topic::find($req->id);
-        // $comments = DB::table("comments")->where("topic_id",$req->id)->paginate(5);
         $comments = Comment::where("topic_id",$req->id)->paginate(5);
         $pop_topics = Topic::orderByRaw("cast(created_at as date) desc")->orderBy("likes","desc")->limit(3)->get();
         $new_topics = Topic::orderBy("created_at","desc")->limit(3)->get();
